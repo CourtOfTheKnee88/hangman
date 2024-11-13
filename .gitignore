@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# ignore index.js located in the src folder
+src/index.js
+
 # testing
 /coverage
 
