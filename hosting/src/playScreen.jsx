@@ -5,7 +5,15 @@ function playScreen() {
 
     return (
         <div>
-
+            <div>
+                <h1>Picture</h1>
+            </div>
+            <div>
+                <h1>Keyboard</h1>
+            </div>
+            <div>
+                <h1>Incorrect Letter Cloud</h1>
+            </div>
         </div>
     )
 }

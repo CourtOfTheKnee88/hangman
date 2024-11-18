@@ -4,31 +4,30 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className='flex justify-center items-center'>
+      <div className='flex flex-col justify-center items-center rounded-lg shadow-xl w-[40%] bg-slate-100 p-2'>
+        <h1 className='font-bold text-3xl pb-6 underline'>Hangman</h1>
+        <div className='space-y-6'>
+          <div className='space-x-2'>
+            <p className='font-semibold pb-2 text-lg'>Word Difficulty:</p>
+            <button className='bg-green-500 text-white rounded-md px-2'>Easy</button>
+            <button className='bg-yellow-400 text-white rounded-md px-2'>Medium</button>
+            <button className='bg-red-600 text-white rounded-md px-2'>Hard</button>
+          </div>
+          <div className='space-x-2'>
+            <p className='font-semibold pb-2 text-lg'>Picture Difficulty:</p>
+            <button className='bg-green-500 text-white rounded-md px-2'>Easy (9 tries)</button>
+            <button className='bg-yellow-400 text-white rounded-md px-2'>Medium (6 tries)</button>
+            <button className='bg-red-600 text-white rounded-md px-2'>Hard (4 tries)</button>
+          </div>
+        </div>
+        <div className='pt-6'>
+          <button className='rounded-md bg-blue-500 text-white px-2 text-2xl'>Start</button>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p className='text-pink-500'>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
