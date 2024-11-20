@@ -15,6 +15,8 @@ function Home() {
   }
 
   return (
+    <div className='h-screen justify-center overflow-hidden'>            
+    <h1 align='center' className='pt-3 font-bold text-5xl pb-6 underline bg-slate-400'>Hangman</h1>
     <div className='h-screen flex justify-center items-center'>
       <div className='flex flex-col justify-center items-center rounded-xl shadow-xl w-[40%] bg-slate-100 p-2'>
         <h1 className='font-bold text-3xl pb-6 underline'>Hangman</h1>
@@ -52,6 +54,7 @@ function Home() {
           <button onClick={startGame} className='rounded-md bg-blue-500 hover:bg-blue-700 text-white px-2 text-2xl'>Start</button>
         </div>
       </div>
+    </div>
     </div>
   );
 }

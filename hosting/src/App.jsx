@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './Home';
-import PlayScreen from './PlayScreen';
-import GameOver from './GameOver';
-import WinScreen from './WinScreen';
+import PlayScreen from './playScreen';
+import GameOver from './gameOver';
+import WinScreen from './winScreen';
 import './App.css';
 
 function App() {
