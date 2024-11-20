@@ -7,7 +7,7 @@ function PlayScreen() {
   const wordDifficulty = params.get('wordDifficulty');
   const pictureDifficulty = params.get('pictureDifficulty');
   const navigate = useNavigate();
-  const word = 'This is a really long test case......................................................'
+  const word = 'test'
   const stuff = `?wordDifficulty=${wordDifficulty}&pictureDifficulty=${pictureDifficulty}&word=${word}`
 
   function surrender() {
@@ -19,8 +19,10 @@ function PlayScreen() {
   }
   
   return (
-    <div className='h-screen justify-center overflow-hidden'>            
-    <h1 align='center' className='pt-3 font-bold text-5xl pb-6 underline bg-slate-400'>Hangman</h1>
+    <div className='h-screen flex flex-col justify-center items-center'>
+    <div className='absolute top-0 py-6 bg-slate-400 w-full'>
+        <h1 className='flex justify-center items-center font-bold text-5xl py-1 underline'>Hangman</h1>
+    </div>    
     <div>
       <h1>Play Screen</h1>
       <p>Word Difficulty: {wordDifficulty}</p>

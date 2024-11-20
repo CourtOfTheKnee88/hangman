@@ -20,15 +20,17 @@ function gameOver() {
     }
 
     return (
-        <div className='h-screen items-center justify-center flex-col'>
-            <h1 align='center' className=' font-bold text-5xl py-6 underline bg-slate-400 absolute-top-0'>Hangman</h1>
-            <div className='flex justify-center items-center'>
-
+        <div className='h-screen flex flex-col justify-center items-center'>
+            <div className='absolute top-0 py-6 bg-slate-400 w-full'>
+                <h1 className='flex justify-center items-center font-bold text-5xl py-1 underline'>Hangman</h1>
+            </div>
+            <div className='flex flex-col justify-center items-center rounded-xl shadow-xl w-[40%] bg-slate-100 p-2'>
+                <div className='flex justify-center items-center'>
                     <div className='flex flex-col justify-center items-center rounded-xl  w-[40%] bg-slate-100 p-2'>
                         <div className='flex justify-center items-center'>
                             <div className='flex flex-col justify-center items-center space-x-2'>
-                                <p className='font-extrabold pb-4 text-3xl'>GAME OVER</p>
-                                <div className='break-normal'>
+                                <p className='font-extrabold pb-4 text-3xl whitespace-nowrap'>GAME OVER</p>
+                                <div>
                                     <p>The word was <b>{word}</b>.</p>
                                 </div>
                                 <div className='py-6 flex justify-center space-x-2'>
@@ -36,6 +38,7 @@ function gameOver() {
                                     <button onClick={restart} className='bg-gray-400 text-white rounded-md px-2 hover:bg-gray-600 '>Change Difficulty</button>
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
