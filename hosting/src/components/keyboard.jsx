@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function Keyboard({ word }) {
+function Keyboard({ word, onLetterClick }) {
 
     const wordToGuess = word;
 
@@ -26,10 +26,11 @@ function Keyboard({ word }) {
             ...prevState,
             [letter]: wordToGuess.includes(letter)
         }));
+        sendLetter(letter);
     }
 
-    const handleClick = (letter) => {
-        console.log(letter);
+    const sendLetter = (letter) => {
+        onLetterClick(letter);
     }
 
     return (

@@ -2,18 +2,31 @@ import { useLocation } from 'react-router-dom';
 import Keyboard from './components/keyboard';
 import { useState } from 'react';
 
-
-function PlayScreen() {
+function playScreen() {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-  
+
   const wordDifficulty = params.get('wordDifficulty');
   const pictureDifficulty = params.get('pictureDifficulty');
 
   const word = 'TEST';
 
-  const isWordGuessed = useState(false);
+  const [correctLetters, setCorrectLetters] = useState([]);
+  const [incorrectLetters, setIncorrectLetters] = useState([]);
 
+  const handleLetterClick = (letter) => {
+    if (word.includes(letter)) {
+      setCorrectLetters(prevLetters => {
+        const newCorrectLetters = [...prevLetters, letter];
+        if (word.split('').every(l => newCorrectLetters.includes(l))) {
+          console.log('You win!');
+        }
+        return newCorrectLetters;
+      });
+    } else {
+      setIncorrectLetters([...incorrectLetters, letter]);
+    }
+  }
 
   return (
     <div className='h-screen flex flex-col justify-center items-center'>
@@ -27,10 +40,10 @@ function PlayScreen() {
         <p>Word</p>
       </div>
       <div>
-        <Keyboard word={word} />
+        <Keyboard word={word} onLetterClick={handleLetterClick} />
       </div>
     </div>
   );
 }
 
-export default PlayScreen;
+export default playScreen;
