@@ -1,21 +1,18 @@
-import { useState } from 'react'
+import { useLocation } from 'react-router-dom';
 
-function playScreen() {
-    const [count, setCount] = useState(0)
+function PlayScreen() {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const wordDifficulty = params.get('wordDifficulty');
+  const pictureDifficulty = params.get('pictureDifficulty');
 
-    return (
-        <div>
-            <div>
-                <h1>Picture</h1>
-            </div>
-            <div>
-                <h1>Keyboard</h1>
-            </div>
-            <div>
-                <h1>Incorrect Letter Cloud</h1>
-            </div>
-        </div>
-    )
+  return (
+    <div>
+      <h1>Play Screen</h1>
+      <p>Word Difficulty: {wordDifficulty}</p>
+      <p>Picture Difficulty: {pictureDifficulty}</p>
+    </div>
+  );
 }
 
-export default playScreen
+export default PlayScreen;
