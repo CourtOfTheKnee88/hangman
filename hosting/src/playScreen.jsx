@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import Keyboard from './components/keyboard';
+import Word from './components/word';
 import { useState } from 'react';
 
 function playScreen() {
@@ -8,6 +9,26 @@ function playScreen() {
 
   const wordDifficulty = params.get('wordDifficulty');
   const pictureDifficulty = params.get('pictureDifficulty');
+
+  const getWord = () => {
+    if (wordDifficulty === 'easy') {
+      return 'TEST';
+    } else if (wordDifficulty === 'medium') {
+      return 'HELLO';
+    } else if (wordDifficulty === 'hard') {
+      return 'WORLD';
+    }
+  }
+
+  const getPicture = () => {
+    if (pictureDifficulty === 'easy') {
+      return 'Picture 1';
+    } else if (pictureDifficulty === 'medium') {
+      return 'Picture 2';
+    } else if (pictureDifficulty === 'hard') {
+      return 'Picture 3';
+    }
+  }   
 
   const word = 'TEST';
 
@@ -18,7 +39,7 @@ function playScreen() {
     if (word.includes(letter)) {
       setCorrectLetters(prevLetters => {
         const newCorrectLetters = [...prevLetters, letter];
-        if (word.split('').every(l => newCorrectLetters.includes(l))) {
+        if (word.split('').every(x => newCorrectLetters.includes(x))) {
           console.log('You win!');
         }
         return newCorrectLetters;
@@ -37,7 +58,7 @@ function playScreen() {
         <div>
           Picture
         </div>
-        <p>Word</p>
+        <p><Word word={word} correctLetters={correctLetters} /> </p>
       </div>
       <div>
         <Keyboard word={word} onLetterClick={handleLetterClick} />
