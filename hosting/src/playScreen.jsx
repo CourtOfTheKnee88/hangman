@@ -23,13 +23,21 @@ function PlayScreen() {
     <div className='absolute top-0 py-6 bg-slate-400 w-full'>
         <h1 className='flex justify-center items-center font-bold text-5xl py-1 underline'>Hangman</h1>
     </div>    
-    <div>
+
       <h1>Play Screen</h1>
       <p>Word Difficulty: {wordDifficulty}</p>
-      <p>Picture Difficulty: {pictureDifficulty}</p>
-      <button onClick={surrender}className='bg-gray-400 text-white rounded-md px-2 hover:bg-gray-600 '>Give Up</button>
-      <button onClick={easyWin}className='bg-green-500 text-white rounded-md px-2 hover:bg-green-700 '>Easy Win</button>
-    </div>
+      <p>Picture Difficulty: {pictureDifficulty}</p> 
+      <div className='border-2'>
+        <div>
+          Picture
+        </div>
+        <div>
+          <Word word={word} correctLetters={correctLetters} />
+        </div>
+      </div>
+      <div>
+        <Keyboard word={word} onLetterClick={handleLetterClick} />
+      </div>
     </div>
   );
 }
