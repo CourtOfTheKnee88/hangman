@@ -40,11 +40,11 @@ function playScreen() {
 
   const getPictureDifficulty = (pictureDifficulty) => {
     if (pictureDifficulty === 'easy') {
-      return 9
+      return 8;
     } else if (pictureDifficulty === 'medium') {
-      return 6
+      return 5;
     } else if (pictureDifficulty === 'hard') {
-      return 4
+      return 3;
     }
   }
 

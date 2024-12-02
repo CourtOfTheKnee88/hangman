@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import dead from '../public/10.svg';
 
 
 function gameOver() {
@@ -30,10 +31,11 @@ function gameOver() {
                         <div className='flex justify-center items-center'>
                             <div className='flex flex-col justify-center items-center space-x-2'>
                                 <p className='font-extrabold pb-4 text-3xl whitespace-nowrap'>GAME OVER</p>
-                                <div>
+                                <img src={dead} alt='dead' className='w-32 h-32' />
+                                <div className='text-center w-max pt-2'>
                                     <p>The word was <b>{word}</b>.</p>
                                 </div>
-                                <div className='py-6 flex justify-center space-x-2'>
+                                <div className='py-4 flex justify-center space-x-2'>
                                     <button onClick={playAgain} className='bg-gray-500 text-white rounded-md px-2 hover:bg-gray-700 '>Play Again</button>
                                     <button onClick={restart} className='bg-gray-400 text-white rounded-md px-2 hover:bg-gray-600 '>Change Difficulty</button>
                                 </div>
