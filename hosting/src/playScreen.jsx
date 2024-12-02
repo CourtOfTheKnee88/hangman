@@ -3,6 +3,9 @@ import Keyboard from './components/keyboard';
 import Word from './components/word';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+
+
 
 function playScreen() {
   const location = useLocation();
@@ -12,19 +15,27 @@ function playScreen() {
   const pictureDifficulty = params.get('pictureDifficulty');
   const navigate = useNavigate();
 
-  const word = 'TEST'
+  const stuff = `?wordDifficulty=${wordDifficulty}&pictureDifficulty=${pictureDifficulty}`
 
-  const stuff = `?wordDifficulty=${wordDifficulty}&pictureDifficulty=${pictureDifficulty}&word=${word}`
+  const getRandomWord = (wordDifficulty) => {
+    const [randomWord, setRandomWord] = useState('');
+    useEffect(() => {
+      // Fetch the file from the public directory
+      fetch(`../src/words/${wordDifficulty}.txt`)
+        .then(response => response.text())
+        .then(data => {
+          const words = data.split('\n').map(word => word.trim());
+          const randomWord = words[Math.floor(Math.random() * words.length)];
+          setRandomWord(randomWord);
+        })
+        .catch(error => console.error('Error fetching the file:', error));
+    }, []);
+    return randomWord;
+  }
 
-  // const getWord = () => {
-  //   if (wordDifficulty === 'easy') {
-  //     word = 'TEST';
-  //   } else if (wordDifficulty === 'medium') {
-  //     word = 'HELLO';
-  //   } else if (wordDifficulty === 'hard') {
-  //     word = 'WORLD';
-  //   }
-  // }
+  const str = getRandomWord(wordDifficulty).toUpperCase();
+  const word = str
+
 
   const getPicture = () => {
     if (pictureDifficulty === 'easy') {
@@ -62,7 +73,6 @@ function playScreen() {
   function easyWin() {
     navigate(`/winScreen` + stuff);
   }
-
   return (
     <div className='h-screen flex flex-col justify-center items-center'>
       {/* <h1>Play Screen</h1>
