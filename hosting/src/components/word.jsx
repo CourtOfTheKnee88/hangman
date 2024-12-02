@@ -1,11 +1,9 @@
 import { useState } from 'react';
 
 function Word({ word, correctLetters }) {
-    const [wordToGuess] = useState(word);
-
     return (
         <div className='flex justify-center items-center'>
-            {wordToGuess.split('').map((letter, index) => {
+            {word.split('').map((letter, index) => {
                 return (
                     <div key={index} className='m-1'>
                         {correctLetters.includes(letter) ? letter : '_'}
