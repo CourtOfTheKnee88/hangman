@@ -15,9 +15,11 @@ function Home() {
   }
 
   return (
-    <div className='h-screen flex justify-center items-center'>
+        <div className='h-screen flex flex-col justify-center items-center'>
+            <div className='absolute top-0 py-6 bg-slate-400 w-full'>
+                <h1 className='flex justify-center items-center font-bold text-5xl py-1 underline'>Hangman</h1>
+            </div>    
       <div className='flex flex-col justify-center items-center rounded-xl shadow-xl w-[40%] bg-slate-100 p-2'>
-        <h1 className='font-bold text-3xl pb-6 underline'>Hangman</h1>
         <div className='space-y-6 flex justify-center flex-col'>
           <div className='flex flex-col'>
             <p className='font-semibold pb-2 text-lg text-center'>Word Difficulty:</p>

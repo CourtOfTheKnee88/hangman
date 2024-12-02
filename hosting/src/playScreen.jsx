@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom';
 import Keyboard from './components/keyboard';
 import Word from './components/word';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function playScreen() {
   const location = useLocation();
@@ -9,6 +10,9 @@ function playScreen() {
 
   const wordDifficulty = params.get('wordDifficulty');
   const pictureDifficulty = params.get('pictureDifficulty');
+  const navigate = useNavigate();
+  const word = 'test'
+  const stuff = `?wordDifficulty=${wordDifficulty}&pictureDifficulty=${pictureDifficulty}&word=${word}`
 
   const getWord = () => {
     if (wordDifficulty === 'easy') {
@@ -30,8 +34,6 @@ function playScreen() {
     }
   }
 
-  const word = 'TEST';
-
   const [correctLetters, setCorrectLetters] = useState([]);
   const [incorrectLetters, setIncorrectLetters] = useState([]);
 
@@ -51,6 +53,14 @@ function playScreen() {
     }
   }
 
+  function surrender() {
+    navigate(`/gameOver` + stuff);
+  }
+
+  function easyWin() {
+    navigate(`/winScreen` + stuff);
+  }
+
   return (
     <div className='h-screen flex flex-col justify-center items-center'>
       {/* <h1>Play Screen</h1>
@@ -67,6 +77,8 @@ function playScreen() {
       <div>
         <Keyboard word={word} onLetterClick={handleLetterClick} />
       </div>
+      <button onClick={surrender} className='bg-gray-400 text-white rounded-md px-2 hover:bg-gray-600 '>Give Up</button>
+      <button onClick={easyWin} className='bg-green-500 text-white rounded-md px-2 hover:bg-green-700 '>Easy Win</button>
     </div>
   );
 }
