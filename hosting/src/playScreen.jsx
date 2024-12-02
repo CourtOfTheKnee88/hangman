@@ -28,7 +28,7 @@ function playScreen() {
     } else if (pictureDifficulty === 'hard') {
       return 'Picture 3';
     }
-  }   
+  }
 
   const word = 'TEST';
 
@@ -45,7 +45,9 @@ function playScreen() {
         return newCorrectLetters;
       });
     } else {
-      setIncorrectLetters([...incorrectLetters, letter]);
+      if (incorrectLetters.every(x => !incorrectLetters.includes(letter))) {
+        setIncorrectLetters([...incorrectLetters, letter]);
+      }
     }
   }
 
@@ -58,7 +60,9 @@ function playScreen() {
         <div>
           Picture
         </div>
-        <p><Word word={word} correctLetters={correctLetters} /> </p>
+        <div>
+          <Word word={word} correctLetters={correctLetters} />
+        </div>
       </div>
       <div>
         <Keyboard word={word} onLetterClick={handleLetterClick} />
