@@ -18,6 +18,38 @@ function playScreen() {
 
   const stuff = `?wordDifficulty=${wordDifficulty}&pictureDifficulty=${pictureDifficulty}`
 
+  const [correctLetters, setCorrectLetters] = useState([]);
+  const [incorrectLetters, setIncorrectLetters] = useState([]);
+
+  const handleLetterClick = (letter) => {
+    if (word.includes(letter)) {
+      setCorrectLetters(prevLetters => {
+        const newCorrectLetters = [...prevLetters, letter];
+        if (word.split('').every(x => newCorrectLetters.includes(x))) {
+          navigate(`/winScreen` + stuff);
+        }
+        return newCorrectLetters;
+      });
+    } else {
+      if (incorrectLetters.every(x => !incorrectLetters.includes(letter))) {
+        setIncorrectLetters([...incorrectLetters, letter]);
+        if (incorrectLetters.length === getPictureDifficulty(pictureDifficulty)) {
+          navigate(`/gameOver` + stuff);
+        }
+      }
+    }
+  }
+
+  const getPictureDifficulty = (pictureDifficulty) => {
+    if (pictureDifficulty === 'easy') {
+      return 9
+    } else if (pictureDifficulty === 'medium') {
+      return 6
+    } else if (pictureDifficulty === 'hard') {
+      return 4
+    }
+  }
+
   const getRandomWord = (wordDifficulty) => {
     const [randomWord, setRandomWord] = useState('');
     useEffect(() => {
@@ -37,36 +69,6 @@ function playScreen() {
   const str = getRandomWord(wordDifficulty).toUpperCase();
   const word = str
 
-
-  const getPicture = () => {
-    if (pictureDifficulty === 'easy') {
-      return 'Picture 1';
-    } else if (pictureDifficulty === 'medium') {
-      return 'Picture 2';
-    } else if (pictureDifficulty === 'hard') {
-      return 'Picture 3';
-    }
-  }
-
-  const [correctLetters, setCorrectLetters] = useState([]);
-  const [incorrectLetters, setIncorrectLetters] = useState([]);
-
-  const handleLetterClick = (letter) => {
-    if (word.includes(letter)) {
-      setCorrectLetters(prevLetters => {
-        const newCorrectLetters = [...prevLetters, letter];
-        if (word.split('').every(x => newCorrectLetters.includes(x))) {
-          console.log('You win!');
-        }
-        return newCorrectLetters;
-      });
-    } else {
-      if (incorrectLetters.every(x => !incorrectLetters.includes(letter))) {
-        setIncorrectLetters([...incorrectLetters, letter]);
-      }
-    }
-  }
-
   function surrender() {
     navigate(`/gameOver` + stuff);
   }
@@ -81,7 +83,7 @@ function playScreen() {
       <p>Picture Difficulty: {pictureDifficulty}</p> */}
       <div className='border-2'>
         <div>
-          <Picture pictureDifficulty={pictureDifficulty} incorrectLetters={incorrectLetters}/>
+          <Picture pictureDifficulty={pictureDifficulty} incorrectLetters={incorrectLetters} />
         </div>
         <div>
           <Word word={word} correctLetters={correctLetters} />
