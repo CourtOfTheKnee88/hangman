@@ -59,7 +59,7 @@ function Keyboard({ word, onLetterClick }) {
                 {bottomRow.map((letter, index) => {
                     return (
                         <button 
-                            onClick={() => handleClick(letter)} 
+                            onClick={() => isCorrect(letter)} 
                             key={index} 
                             className={`${letterStates[letter] === true ? 'bg-green-200' : letterStates[letter] === false ? 'bg-red-200' : 'bg-gray-200'} m-1 rounded-md px-2`}>{letter}</button>
                     )
