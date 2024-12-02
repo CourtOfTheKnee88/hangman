@@ -1,5 +1,8 @@
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Keyboard from './components/keyboard';
+import Word from './components/word';
+import { useState } from 'react';
 
 function PlayScreen() {
   const location = useLocation();
