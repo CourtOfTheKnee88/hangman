@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import Keyboard from './components/keyboard';
 import Word from './components/word';
+import Picture from './components/picture';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -70,7 +71,7 @@ function playScreen() {
       <p>Picture Difficulty: {pictureDifficulty}</p> */}
       <div className='border-2'>
         <div>
-          Picture
+          <Picture pictureDifficulty={pictureDifficulty} incorrectLetters={incorrectLetters}/>
         </div>
         <div>
           <Word word={word} correctLetters={correctLetters} />
