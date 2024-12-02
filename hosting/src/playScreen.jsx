@@ -16,7 +16,37 @@ function playScreen() {
   const pictureDifficulty = params.get('pictureDifficulty');
   const navigate = useNavigate();
 
-  const stuff = `?wordDifficulty=${wordDifficulty}&pictureDifficulty=${pictureDifficulty}`
+  const [correctLetters, setCorrectLetters] = useState([]);
+  const [incorrectLetters, setIncorrectLetters] = useState([]);
+
+  const handleLetterClick = (letter) => {
+    if (word.includes(letter)) {
+      setCorrectLetters(prevLetters => {
+        const newCorrectLetters = [...prevLetters, letter];
+        if (word.split('').every(x => newCorrectLetters.includes(x))) {
+          navigate(`/winScreen` + stuff);
+        }
+        return newCorrectLetters;
+      });
+    } else {
+      if (incorrectLetters.every(x => !incorrectLetters.includes(letter))) {
+        setIncorrectLetters([...incorrectLetters, letter]);
+        if (incorrectLetters.length === getPictureDifficulty(pictureDifficulty)) {
+          navigate(`/gameOver` + stuff);
+        }
+      }
+    }
+  }
+
+  const getPictureDifficulty = (pictureDifficulty) => {
+    if (pictureDifficulty === 'easy') {
+      return 8;
+    } else if (pictureDifficulty === 'medium') {
+      return 5;
+    } else if (pictureDifficulty === 'hard') {
+      return 3;
+    }
+  }
 
   const getRandomWord = (wordDifficulty) => {
     const [randomWord, setRandomWord] = useState('');
@@ -36,36 +66,7 @@ function playScreen() {
 
   const str = getRandomWord(wordDifficulty).toUpperCase();
   const word = str
-
-
-  const getPicture = () => {
-    if (pictureDifficulty === 'easy') {
-      return 'Picture 1';
-    } else if (pictureDifficulty === 'medium') {
-      return 'Picture 2';
-    } else if (pictureDifficulty === 'hard') {
-      return 'Picture 3';
-    }
-  }
-
-  const [correctLetters, setCorrectLetters] = useState([]);
-  const [incorrectLetters, setIncorrectLetters] = useState([]);
-
-  const handleLetterClick = (letter) => {
-    if (word.includes(letter)) {
-      setCorrectLetters(prevLetters => {
-        const newCorrectLetters = [...prevLetters, letter];
-        if (word.split('').every(x => newCorrectLetters.includes(x))) {
-          console.log('You win!');
-        }
-        return newCorrectLetters;
-      });
-    } else {
-      if (incorrectLetters.every(x => !incorrectLetters.includes(letter))) {
-        setIncorrectLetters([...incorrectLetters, letter]);
-      }
-    }
-  }
+  const stuff = `?wordDifficulty=${wordDifficulty}&pictureDifficulty=${pictureDifficulty}&word=${word}`
 
   function surrender() {
     navigate(`/gameOver` + stuff);
@@ -76,9 +77,12 @@ function playScreen() {
   }
   return (
     <div className='h-screen flex flex-col justify-center items-center'>
+      <div className='absolute top-0 py-6 bg-slate-400 w-full'>
+        <h1 className='flex justify-center items-center font-bold text-5xl py-1 underline'>Hangman</h1>
+      </div>
       <div className='border-2'>
         <div>
-          <Picture pictureDifficulty={pictureDifficulty} incorrectLetters={incorrectLetters}/>
+          <Picture pictureDifficulty={pictureDifficulty} incorrectLetters={incorrectLetters} />
         </div>
         <div>
           <Word word={word} correctLetters={correctLetters} />
@@ -88,7 +92,6 @@ function playScreen() {
         <Keyboard word={word} onLetterClick={handleLetterClick} />
       </div>
       <button onClick={surrender} className='bg-gray-400 text-white rounded-md px-2 hover:bg-gray-600 '>Give Up</button>
-      <button onClick={easyWin} className='bg-green-500 text-white rounded-md px-2 hover:bg-green-700 '>Easy Win</button>
     </div>
   );
 }
