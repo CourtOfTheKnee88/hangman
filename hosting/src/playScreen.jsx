@@ -52,7 +52,7 @@ function playScreen() {
     const [randomWord, setRandomWord] = useState('');
     useEffect(() => {
       // Fetch the file from the public directory
-      fetch(`../src/words/${wordDifficulty}.txt`)
+      fetch(`words/${wordDifficulty}.txt`)
         .then(response => response.text())
         .then(data => {
           const words = data.split('\n').map(word => word.trim());
