@@ -11,18 +11,20 @@ function playScreen() {
   const wordDifficulty = params.get('wordDifficulty');
   const pictureDifficulty = params.get('pictureDifficulty');
   const navigate = useNavigate();
-  const word = 'test'
+
+  const word = 'TEST'
+
   const stuff = `?wordDifficulty=${wordDifficulty}&pictureDifficulty=${pictureDifficulty}&word=${word}`
 
-  const getWord = () => {
-    if (wordDifficulty === 'easy') {
-      return 'TEST';
-    } else if (wordDifficulty === 'medium') {
-      return 'HELLO';
-    } else if (wordDifficulty === 'hard') {
-      return 'WORLD';
-    }
-  }
+  // const getWord = () => {
+  //   if (wordDifficulty === 'easy') {
+  //     word = 'TEST';
+  //   } else if (wordDifficulty === 'medium') {
+  //     word = 'HELLO';
+  //   } else if (wordDifficulty === 'hard') {
+  //     word = 'WORLD';
+  //   }
+  // }
 
   const getPicture = () => {
     if (pictureDifficulty === 'easy') {
